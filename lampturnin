@@ -1,0 +1,19 @@
+int lampPin = 13;  // Пин, к которому подключена лампочка
+
+void setup() {
+  Serial.begin(9600); // Инициализация последовательного порта
+  pinMode(lampPin, OUTPUT); // Настраиваем пин на вывод
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char command = Serial.read(); // Читаем команду из последовательного порта
+    if (command == '1') {
+      digitalWrite(lampPin, HIGH); // Включаем лампочку при получении команды "1"
+      Serial.println("Lamp turned ON");
+    } else if (command == '0') {
+      digitalWrite(lampPin, LOW); // Выключаем лампочку при получении команды "0"
+      Serial.println("Lamp turned OFF");
+    }
+  }
+}
